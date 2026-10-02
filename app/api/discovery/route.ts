@@ -4,12 +4,12 @@ import crypto from "crypto";
 import { NextRequest, NextResponse } from "next/server";
 
 type DiscoveryRecord = {
-  id: string;
+  id?: string;
   targetUrl: string;
   createdAt: string;
-  updatedAt: string;
-  discoveryUrl: string;
-  status: string;
+  updatedAt?: string;
+  discoveryUrl?: string;
+  status?: string;
 
   telemetry?: {
     totalVisits: number;
@@ -67,6 +67,13 @@ function getBaseUrl(request: NextRequest): string {
     return configured.replace(/\/$/, "");
   }
 
+  const netlifyUrl =
+    process.env.URL?.trim();
+
+  if (netlifyUrl) {
+    return netlifyUrl.replace(/\/$/, "");
+  }
+
   return request.nextUrl.origin;
 }
 
@@ -122,23 +129,55 @@ export async function POST(request: NextRequest) {
 
     const now = new Date().toISOString();
 
-    const database = await readDatabase();
+    const database =
+      await readDatabase();
 
-    const existing = database[id];
+    const existing =
+      database[id];
 
+    /*
+     * Existing discovery record:
+     * Always return a freshly generated discovery URL
+     * using the current production base URL.
+     *
+     * This fixes old records that may still contain
+     * http://localhost:3000.
+     */
     if (existing) {
+      const correctedRecord: DiscoveryRecord = {
+        ...existing,
+        id: existing.id || id,
+        targetUrl: existing.targetUrl || targetUrl,
+        updatedAt: now,
+        discoveryUrl,
+      };
+
+      database[id] = correctedRecord;
+
+      try {
+        await writeDatabase(database);
+      } catch (writeError) {
+        console.warn(
+          "Could not update existing discovery record:",
+          writeError
+        );
+      }
+
       return NextResponse.json({
         success: true,
-        targetUrl: existing.targetUrl,
-        discoveryUrl: existing.discoveryUrl,
-        id: existing.id,
-        createdAt: existing.createdAt,
+        targetUrl: correctedRecord.targetUrl,
+        discoveryUrl,
+        id,
+        createdAt: correctedRecord.createdAt,
         status: "DISCOVERY_EXISTS",
         message:
           "A discovery record already exists for this URL.",
       });
     }
 
+    /*
+     * Create a brand-new discovery record.
+     */
     const record: DiscoveryRecord = {
       id,
       targetUrl,
