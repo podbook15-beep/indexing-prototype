@@ -1,0 +1,47 @@
+[
+  {
+    "id": "5d866b1c-64b5-4b11-889e-0e4461423951",
+    "discoveryId": "8a72f6c1e4d9b123",
+    "targetUrl": "https://script.google.com/macros/s/AKfycbwLzqwq-eu4UVqHyv_pe3nuuE9jkgN6O32YrRPD_J2XFcq11Njm5QZAq0Qv0mRRtBcw/exec",
+    "timestamp": "2026-10-02T19:39:42.064Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+    "crawler": "Browser",
+    "event": "discovery_visit"
+  },
+  {
+    "id": "c22880d7-50b6-4382-801d-99c77dd33d32",
+    "discoveryId": "8a72f6c1e4d9b123",
+    "targetUrl": "https://script.google.com/macros/s/AKfycbwLzqwq-eu4UVqHyv_pe3nuuE9jkgN6O32YrRPD_J2XFcq11Njm5QZAq0Qv0mRRtBcw/exec",
+    "timestamp": "2026-10-02T19:40:29.161Z",
+    "userAgent": "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
+    "crawler": "Googlebot",
+    "event": "googlebot_visit"
+  },
+  {
+    "id": "bed517c0-bea0-4790-ab1f-6501c42792f2",
+    "discoveryId": "8a72f6c1e4d9b123",
+    "targetUrl": "https://script.google.com/macros/s/AKfycbwLzqwq-eu4UVqHyv_pe3nuuE9jkgN6O32YrRPD_J2XFcq11Njm5QZAq0Qv0mRRtBcw/exec",
+    "timestamp": "2026-10-02T19:59:39.098Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+    "crawler": "Browser",
+    "event": "discovery_visit"
+  },
+  {
+    "id": "5960edae-6133-4862-a6f8-e6c1469657e2",
+    "discoveryId": "8a72f6c1e4d9b123",
+    "targetUrl": "https://script.google.com/macros/s/AKfycbwLzqwq-eu4UVqHyv_pe3nuuE9jkgN6O32YrRPD_J2XFcq11Njm5QZAq0Qv0mRRtBcw/exec",
+    "timestamp": "2026-10-02T20:00:58.178Z",
+    "userAgent": "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
+    "crawler": "Googlebot",
+    "event": "googlebot_visit"
+  },
+  {
+    "id": "cc225180-f738-4eec-aa4e-76ac81ad62a5",
+    "discoveryId": "2e551dc7f28e0527",
+    "targetUrl": "https://script.google.com/macros/s/AKfycbwLzqwq-eu4UVqHyv_pe3nuuE9jkgN6O32YrRPD_J2XFcq11Njm5QZAq0Qv0mRRtBcw/exec",
+    "timestamp": "2026-10-02T20:02:46.082Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+    "crawler": "Browser",
+    "event": "discovery_visit"
+  }
+]

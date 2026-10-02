@@ -1,0 +1,21 @@
+{
+  "8a72f6c1e4d9b123": {
+    "targetUrl": "https://script.google.com/macros/s/AKfycbwLzqwq-eu4UVqHyv_pe3nuuE9jkgN6O32YrRPD_J2XFcq11Njm5QZAq0Qv0mRRtBcw/exec",
+    "createdAt": "2026-10-03T00:00:00.000Z"
+  },
+  "2e551dc7f28e0527": {
+    "id": "2e551dc7f28e0527",
+    "targetUrl": "https://script.google.com/macros/s/AKfycbwLzqwq-eu4UVqHyv_pe3nuuE9jkgN6O32YrRPD_J2XFcq11Njm5QZAq0Qv0mRRtBcw/exec",
+    "createdAt": "2026-10-02T19:33:44.622Z",
+    "updatedAt": "2026-10-02T19:33:44.622Z",
+    "discoveryUrl": "http://localhost:3000/d/2e551dc7f28e0527",
+    "status": "DISCOVERY_CREATED",
+    "telemetry": {
+      "totalVisits": 0,
+      "lastVisitAt": null,
+      "userAgents": [],
+      "googlebotHits": 0,
+      "crawlerHits": 0
+    }
+  }
+}
