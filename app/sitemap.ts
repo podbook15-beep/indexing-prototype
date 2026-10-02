@@ -1,59 +1,53 @@
-import type { MetadataRoute } from "next";
-import { promises as fs } from "fs";
+import fs from "fs/promises";
 import path from "path";
+import type { MetadataRoute } from "next";
 
 type DiscoveryRecord = {
-  id: string;
+  targetUrl: string;
   createdAt: string;
 };
 
-type DiscoveryDatabase =
-  Record<string, DiscoveryRecord>;
+type DiscoveryDatabase = Record<string, DiscoveryRecord>;
+
+const DISCOVERY_FILE = path.join(
+  process.cwd(),
+  "data",
+  "discovery.json"
+);
+
+async function readDiscovery(): Promise<DiscoveryDatabase> {
+  try {
+    const raw = await fs.readFile(
+      DISCOVERY_FILE,
+      "utf8"
+    );
+
+    return JSON.parse(raw);
+  } catch {
+    return {};
+  }
+}
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl =
     process.env.NEXT_PUBLIC_BASE_URL ||
-    "http://localhost:3000";
+    "https://indexing-prototypes.netlify.app";
 
-  const entries: MetadataRoute.Sitemap = [
+  const discoveryDatabase =
+    await readDiscovery();
+
+  const discoveryUrls = Object.entries(
+    discoveryDatabase
+  ).map(([id, record]) => ({
+    url: `${baseUrl}/d/${id}`,
+    lastModified: new Date(record.createdAt),
+  }));
+
+  return [
     {
       url: baseUrl,
       lastModified: new Date(),
     },
+    ...discoveryUrls,
   ];
-
-  try {
-    const file =
-      path.join(
-        process.cwd(),
-        "data",
-        "discovery.json"
-      );
-
-    const content =
-      await fs.readFile(
-        file,
-        "utf8"
-      );
-
-    const database:
-      DiscoveryDatabase =
-      JSON.parse(content);
-
-    for (const record of Object.values(
-      database
-    )) {
-      entries.push({
-        url:
-          `${baseUrl}/d/${record.id}`,
-        lastModified:
-          new Date(record.createdAt),
-      });
-    }
-  } catch {
-    // Keep the homepage in the sitemap
-    // if discovery data is unavailable.
-  }
-
-  return entries;
 }
